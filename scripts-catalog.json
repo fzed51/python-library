@@ -4,5 +4,11 @@
     "name":"install-pyscripts.py",
     "hash":"8d40a2e64ffb5cee49aef3d9081863a057ff076a0d0e9387aa9a5d7d5e536c2e",
     "version":"1.0.0"
+  },
+  {
+    "id":"045b0f24-9431-430b-9e69-326733971b1d",
+    "name":"register-script.py",
+    "hash":"6488c67dc29464d4a52ccc8447187e0a258976dc2306afbf4a57204fb1caaab5",
+    "version":"1.0.0"
   }
 ]
