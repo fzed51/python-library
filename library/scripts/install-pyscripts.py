@@ -1,3 +1,5 @@
+#! python3
+
 import hashlib
 import json
 from os import path, makedirs, environ, remove
