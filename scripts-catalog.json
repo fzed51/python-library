@@ -1,14 +1,20 @@
 [
   {
-    "id":"c8977698-e724-4603-b8ca-2cdf42276cde",
-    "name":"install-pyscripts.py",
-    "hash":"5c51d1953fbda3bf26097c8494e53fb8e22ba8195cb0f054a9b749ca6abef64f",
-    "version":"1.1.0"
+    "id": "c8977698-e724-4603-b8ca-2cdf42276cde",
+    "name": "install-pyscripts.py",
+    "hash": "5c51d1953fbda3bf26097c8494e53fb8e22ba8195cb0f054a9b749ca6abef64f",
+    "version": "1.1.0"
   },
   {
-    "id":"045b0f24-9431-430b-9e69-326733971b1d",
-    "name":"register-script.py",
-    "hash":"6488c67dc29464d4a52ccc8447187e0a258976dc2306afbf4a57204fb1caaab5",
-    "version":"1.0.0"
+    "id": "045b0f24-9431-430b-9e69-326733971b1d",
+    "name": "register-script.py",
+    "hash": "6488c67dc29464d4a52ccc8447187e0a258976dc2306afbf4a57204fb1caaab5",
+    "version": "1.0.0"
+  },
+  {
+    "id": "e46bdb30-b567-4fca-97ef-e51e4248c8b7",
+    "name": "update-pyscripts.py",
+    "hash": "a79ac605e0297ed31c3fe8d622f4e889d930446fe4f5e1ff2a81800f112c1c17",
+    "version": "1.0.0"
   }
 ]
