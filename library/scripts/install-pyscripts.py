@@ -1,6 +1,7 @@
+import hashlib
 import json
-from os import path, makedirs, environ, listdir
-from os.path import join, isdir, dirname
+from os import path, makedirs, environ, remove
+from os.path import join, isdir
 import requests
 
 def check_env(var):
@@ -23,6 +24,27 @@ def join_url(parent, child):
     Joint deux URL en supprimant les barres obliques en trop.
     """
     return f"{parent.rstrip('/')}/{child.lstrip('/')}"
+
+def download(url: str, save_path: str, expected_hash: str|None =None)->None:
+    """
+    Rélécharge le un fichier et vérifie son hash
+    :param url: url de téléchargement
+    :param save_path: nom sous le quel est enregistré le fichier
+    :param expected_hash: hash dez validation (optional)
+    """
+    response = requests.get(url, stream=True)
+    response.raise_for_status()
+    hasher = hashlib.sha256()
+    with open(save_path, 'wb') as f:
+        for chunk in response.iter_content(1024):
+            hasher.update(chunk)
+            f.write(chunk)
+
+    calculated_hash = hasher.hexdigest()
+    if expected_hash and calculated_hash != expected_hash:
+        remove(save_path)
+        raise ValueError("Hash mismatch")
+
 
 def main():
     # URL du catalogue de scripts
@@ -65,11 +87,7 @@ def main():
     # Téléchargement du script
     script_url = join_url(URL + "/library/scripts/", script["name"])
     script_path = join(script_directory, script["name"])
-    response = requests.get(script_url, stream=True)
-    response.raise_for_status()  # Lève une exception en cas d'erreur
-    with open(script_path, 'wb') as f:
-        for chunk in response.iter_content(1024):
-            f.write(chunk)
+    download(script_url, script_path, script["hash"])
 
     # Gestion du fichier des scripts installés
     installed_scripts = []
