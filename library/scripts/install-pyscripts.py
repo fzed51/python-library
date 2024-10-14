@@ -35,7 +35,8 @@ def main():
     installed_script_file = join(environ['PYHOME'], "installed-script.json")
 
     # Téléchargement du catalogue de scripts
-    response = requests.get(URL + "/scripts_catalog.json")
+    response = requests.get(URL + "/scripts-catalog.json")
+    response.raise_for_status()
     catalog = json.loads(response.content)
 
     # Affichage du catalogue
@@ -60,15 +61,6 @@ def main():
     # Création du répertoire des scripts s'il n'existe pas
     if not path.exists(script_directory):
         makedirs(script_directory)
-
-    # Vérification de la présence du répertoire dans PATH
-    script_path_trimmed = script_directory.rstrip("\\/")
-    env_path = environ.get("PATH", "").split(";")
-    env_path_trimmed = [p.rstrip("\\/") for p in env_path]
-    if script_path_trimmed not in env_path_trimmed:
-        env_path.append(script_path_trimmed)
-        environ["PATH"] = ";".join(env_path)
-        print(f"Le dossier '{script_directory}' a été ajouté aux variables d'environnement PATH.")
 
     # Téléchargement du script
     script_url = join_url(URL + "/library/scripts/", script["name"])
